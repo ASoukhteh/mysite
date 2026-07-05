@@ -8,11 +8,29 @@ def index_view(request):
 
 def single_view(request, pid):
     post = get_object_or_404(Post, pk=pid, status=1)
-    context = {"post": post}
+    
+    # Increment view count
+    post.counted_views += 1
+    post.save()
+    
+    # Get previous post (older)
+    prev_post = Post.objects.filter(
+        status=1,
+        published_date__lt=post.published_date  # Less than current date
+    ).order_by('-published_date').first()  # Newest first, get first = immediate previous
+    
+    # Get next post (newer)
+    next_post = Post.objects.filter(
+        status=1,
+        published_date__gt=post.published_date  # Greater than current date
+    ).order_by('published_date').first()  # Oldest first, get first = immediate next
+    
+    context = {
+        "post": post,
+        "prev_post": prev_post,
+        "next_post": next_post,
+    }
     return render(request, 'blog/blog-single.html', context)
 
-def test(request, pid):
-    #post = Post.objects.get(id=pid)
-    post = get_object_or_404(Post, pk=pid)
-    context = {"post": post}
-    return render(request, 'test.html', context)
+def test(request):
+    return render(request, 'test.html')
