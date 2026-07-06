@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from blog.models import Post
 
 def index_view(request, **kwargs):
@@ -42,6 +43,15 @@ def single_view(request, pid):
 #     posts = posts.filter(category__name=cat_name.lower())
 #     context = {'posts': posts}
 #     return render(request, 'blog/blog-home.html', context)
+
+
+def blog_search(request):
+    posts = Post.objects.filter(status=1)
+    if request.method == 'GET':
+        if s := request.GET.get('s'): 
+            posts = posts.filter(Q(content__icontains=s) | Q(title__icontains=s))
+    context = {'posts': posts}
+    return render(request, 'blog/blog-home.html', context)
 
 def test(request):
     return render(request, 'test.html')
