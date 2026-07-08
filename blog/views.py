@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from blog.models import Post
+from blog.models import Post, Comment
 
 def index_view(request, **kwargs):
     posts = Post.objects.filter(status=1)
@@ -44,11 +44,14 @@ def single_view(request, pid):
         status=1,
         published_date__gt=post.published_date  # Greater than current date
     ).order_by('published_date').first()  # Oldest first, get first = immediate next
+
+    comments = Comment.objects.filter(post=post.id, approved=True).order_by('-created_date')
     
     context = {
         "post": post,
         "prev_post": prev_post,
         "next_post": next_post,
+        "comments" : comments,
     }
     return render(request, 'blog/blog-single.html', context)
 

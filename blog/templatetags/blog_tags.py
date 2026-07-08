@@ -1,12 +1,13 @@
 from django import template
 from blog.models import Post
-from blog.models import Category
+from blog.models import Category, Comment
 
 register = template.Library()
 
-@register.simple_tag
-def function():
-    return "hello"
+@register.simple_tag(name='count_comment')
+def function(pid):
+    return Comment.objects.filter(post=pid, approved=True).count()
+
 
 @register.inclusion_tag('blog/blog-latest-posts.html')
 def latestposts(arg=3):
