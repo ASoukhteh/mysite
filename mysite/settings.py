@@ -37,18 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website.apps.WebsiteConfig',
+
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'django.contrib.humanize',
+    'django_extensions',
     'robots',
     'debug_toolbar',
     'taggit',
+    'django_summernote',
 
-    'django.contrib.humanize',
-    'django_extensions',
-    
-
-    'blog'
+    'website.apps.WebsiteConfig',
+    'blog',
 ]
 
 # sites framework
@@ -57,6 +57,8 @@ SITE_ID = 2
 # robots
 ROBOTS_USE_HOST = False
 ROBOTS_USE_SITEMAP = True
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
