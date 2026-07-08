@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from blog.models import Post
-from website.forms import ContactForm
-from django.http import HttpResponse, JsonResponse
+from website.forms import ContactForm, NewsletterForm
+from django.http import HttpResponseRedirect
 
 def index_view(request):
     posts = Post.objects.filter(status=1)
@@ -19,3 +19,12 @@ def contact_view(request):
             form.save()
     form = ContactForm()
     return render(request, 'website/contact.html', {'form': form})
+
+def newsletter_view(request):
+    if request.method == "POST":
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
