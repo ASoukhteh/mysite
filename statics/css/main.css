@@ -4554,3 +4554,42 @@ body.mobile-nav-active #mobile-nav-toggle {
 .footer-text i {
   color: #f8b600;
 }
+
+
+/* Modern Glassmorphism Design */
+.captcha-wrapper {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.captcha-box input[type="text"] {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(0, 123, 255, 0.3);
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.captcha-box input[type="text"]:focus {
+    background: white;
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+    transform: scale(1.02);
+}
+
+/* Loading animation for refresh button */
+.captcha-refresh.loading {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

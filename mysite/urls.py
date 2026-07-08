@@ -39,6 +39,7 @@ urlpatterns = [
     ),
     re_path(r'^robots\.txt', include('robots.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('captcha/', include('captcha.urls')),
 ]+ debug_toolbar_urls()
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -11,7 +11,8 @@
 					Contact Us
 				</h1>
 				<p class="text-white link-nav"><a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span>
-					<a href="contact.html"> Contact Us</a></p>
+					<a href="contact.html"> Contact Us</a>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -78,6 +79,22 @@
 								required=""></textarea>
 						</div>
 						<div class="col-lg-12">
+							<!-- Captcha Container with better styling -->
+							<div class="captcha-wrapper">
+								<div class="captcha-container">
+									<div class="captcha-box">
+										{{ form.captcha }}
+									</div>
+									<!-- Refresh button for captcha -->
+									<button type="button" class="captcha-refresh" onclick="refreshCaptcha()">
+										<i class="fa fa-refresh"></i>
+									</button>
+								</div>
+								<div class="captcha-help-text">
+									<small>Enter the characters shown in the image above</small>
+								</div>
+							</div>
+
 							<div class="alert-msg" style="text-align: left;"></div>
 							<button class="genric-btn primary" style="float: right;">Send Message</button>
 						</div>
