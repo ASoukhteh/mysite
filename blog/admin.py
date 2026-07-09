@@ -16,11 +16,9 @@ class PostAdmin(SummernoteModelAdmin): #admin.ModelAdmin
 class CommitAdmin(SummernoteModelAdmin):
     date_hierarchy = 'created_date'
     empty_value_display = '-empty-'
-    list_display = ('name', 'post', 'approved', 'created_date')
+    list_display = ('name', 'subject','post', 'approved', 'created_date')
     list_filter = ('approved', 'post')
     search_fields = ['title', 'post']
-
-    summernote_fields = ('message',)
 
 admin.site.register(Comment, CommitAdmin)
 admin.site.register(Post, PostAdmin)
