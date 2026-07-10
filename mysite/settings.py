@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     'website.apps.WebsiteConfig',
     'blog',
+    'accounts',
 ]
 
 # sites framework
